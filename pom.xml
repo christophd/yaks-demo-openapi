@@ -39,7 +39,7 @@
   <build>
     <testResources>
       <testResource>
-        <directory>test</directory>
+        <directory>features</directory>
       </testResource>
     </testResources>
   </build>
@@ -60,6 +60,11 @@
     <dependency>
       <groupId>org.citrusframework.yaks</groupId>
       <artifactId>yaks-http</artifactId>
+      <version>${yaks.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.citrusframework.yaks</groupId>
+      <artifactId>yaks-kubernetes</artifactId>
       <version>${yaks.version}</version>
     </dependency>
     <dependency>

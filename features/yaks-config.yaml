@@ -1,6 +1,6 @@
-#
+# ---------------------------------------------------------------------------
 # Licensed to the Apache Software Foundation (ASF) under one or more
-# contributor license agreements. See the NOTICE file distributed with
+# contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
 # The ASF licenses this file to You under the Apache License, Version 2.0
 # (the "License"); you may not use this file except in compliance with
@@ -13,7 +13,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
+# ---------------------------------------------------------------------------
 
-service.url=http://localhost:8080
-service.spec.url=${service.url}/openapi
+config:
+  runtime:
+    settings:
+      loggers:
+        - name: Logger.Message_IN
+          level: DEBUG
+        - name: Logger.Message_OUT
+          level: DEBUG
+

@@ -14,26 +14,17 @@ This demo assumes that you have an OpenShift cluster up and running and have acc
 is also assumed that you have the [Camel K operator](https://operatorhub.io/operator/camel-k) 
 installed and ready for usage on your namespace.
 
-## Setup Camel K integrations as SUT
+## Setup Quarkus application as SUT
 
-The tests use Camel K integrations as SUT (System Under Test). We need to start the Camel K integrations first before running any test.
+The tests use a Quarkus web application as SUT (System Under Test). We need to start the application first before running any test.
 
-Please make sure to have the `kamel` CLI binary available on your machine. You can install this binary
-via download from the [Camel K releases on gihtub](https://github.com/apache/camel-k/releases/tag/v1.1.1).
-
-You can run the OpenAPI greeting service and the splitter EIP as follows:
+You can run the OpenAPI fruit-store web application as follows:
 
 ```shell script
-$ kamel run camel-k/GreetingService.java --resource camel-k/openapi.json
-$ kamel run camel-k/greeting-splitter.groovy
+$ mvn quarkus:dev
 ```                             
 
-This runs the greeting service that exposes the Http REST API and the splitter that listens on the
-greeting event stream and pushes the split result to the words topic.
-
-You can review all components in the OpenShift console and make sure that everything is up and running.
-Here you can also find the service URL and the Kafka broker URL. These need to be set in the feature 
-files before running the tests.
+This runs the fruit-store service that exposes the Http REST API.
 
 ## Setup YAKS operator
 
@@ -46,9 +37,10 @@ We are finally setup and can verify the services now by running the feature file
 [test](test) directory:
 
 ```shell script
-$ yaks test test/greeting-service.feature
-$ yaks test test/greeting-openapi.feature
-$ yaks test test/greeting-outline.feature
-$ yaks test test/greeting-event.feature
-$ yaks test test/greeting-split-event.feature
+$ yaks test test/01_fruits-rest-api.feature
+$ yaks test test/02_fruits-open-api.feature
+$ yaks test test/03_fruits-open-api.feature
+$ yaks test test/04_fruits-outline.feature
+$ yaks test test/05_fruits-price.feature
+$ yaks test test/06_fruits-price-error.feature
 ```

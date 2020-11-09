@@ -1,7 +1,7 @@
 Feature: Fruit Store API
 
   Background:
-    Given URL: http://localhost:8080
+    Given URL: http://fruit-store-openapi-demo
 
   Scenario Outline: getFruits
     And HTTP request header Content-Type is "application/json"
@@ -28,4 +28,4 @@ Feature: Fruit Store API
     | id   | name       | category | price | status    |
     | 1000 | Apple      | pome     | 1.59  | AVAILABLE |
     | 1001 | Pineapple  | tropical | 1.99  | PENDING   |
-    | 1002 | Strawberry | berry    | 2.55  | SOLD      |
+    | 1002 | Strawberry | berry    | 2.50  | SOLD      |
