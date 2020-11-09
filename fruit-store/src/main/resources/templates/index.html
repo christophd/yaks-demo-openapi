@@ -67,6 +67,7 @@
                         <th role="columnheader" scope="col">Category</th>
                         <th role="columnheader" scope="col">Description</th>
                         <th role="columnheader" scope="col">Tags</th>
+                        <th role="columnheader" scope="col">Price</th>
                         <th role="columnheader" scope="col">Status</th>
                         <td role="cell"></td>
                     </tr>
@@ -99,6 +100,13 @@
                             {/for}
                             {#else}
                             <span>[]</span>
+                            {/if}
+                        </td>
+                        <td role="cell" data-label="Price">
+                            {#if fruit.price}
+                            <span>{fruit.price}</span>
+                            {#else}
+                            <span>0.00</span>
                             {/if}
                         </td>
                         <td role="cell" data-label="Status">

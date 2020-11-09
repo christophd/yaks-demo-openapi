@@ -33,6 +33,18 @@ paths:
       responses:
         "200":
           description: OK
+  /fruits/price/{id}:
+    get:
+      operationId: getPriceUpdate
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
   /fruits/{id}:
     get:
       operationId: getFruitById
@@ -68,6 +80,8 @@ components:
           type: integer
         name:
           type: string
+    BigDecimal:
+      type: number
     Status:
       enum:
       - AVAILABLE
@@ -86,6 +100,8 @@ components:
           type: integer
         name:
           type: string
+        price:
+          $ref: '#/components/schemas/BigDecimal'
         status:
           $ref: '#/components/schemas/Status'
         tags:

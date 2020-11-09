@@ -18,6 +18,7 @@
 package org.citrusframework.yaks.fruits;
 
 import javax.inject.Singleton;
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Set;
@@ -41,18 +42,21 @@ public class FruitStore {
         Fruit apple = new Fruit(nextId(), "Apple", "Winter fruit");
         apple.category = pome;
         apple.tags = new String[] {"winter", "juicy"};
+        apple.price = new BigDecimal("1.59");
         apple.status = Fruit.Status.AVAILABLE;
         add(apple);
 
         Fruit pineapple = new Fruit(nextId(),"Pineapple", "Tropical fruit");
         pineapple.tags = new String[] {"cocktail"};
         pineapple.category = tropical;
+        pineapple.price = new BigDecimal("1.99");
         add(pineapple);
 
         Fruit strawberry = new Fruit(nextId(),"Strawberry", "Delicious");
         strawberry.tags = new String[] {"summer", "smoothie"};
         strawberry.category = berry;
         strawberry.status= Fruit.Status.SOLD;
+        strawberry.price = new BigDecimal("2.55");
         add(strawberry);
     }
 

@@ -37,6 +37,7 @@ Feature: Fruit Store API
         "name":"tropical"
       },
       "status": "PENDING",
+      "price":1.99,
       "tags": ["cocktail"]
     }
     """

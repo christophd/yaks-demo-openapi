@@ -18,13 +18,14 @@ Feature: Fruit Store API
         "name":"<category>"
       },
       "status": "<status>",
+      "price": <price>,
       "tags": "@assertThat(not(empty())@"
     }
     """
     Then receive HTTP 200 OK
 
   Examples:
-    | id   | name       | category | status    |
-    | 1000 | Apple      | pome     | AVAILABLE |
-    | 1001 | Pineapple  | tropical | PENDING   |
-    | 1002 | Strawberry | berry    | SOLD      |
+    | id   | name       | category | price | status    |
+    | 1000 | Apple      | pome     | 1.59  | AVAILABLE |
+    | 1001 | Pineapple  | tropical | 1.99  | PENDING   |
+    | 1002 | Strawberry | berry    | 2.50  | SOLD      |

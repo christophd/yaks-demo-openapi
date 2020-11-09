@@ -22,28 +22,16 @@ import java.math.BigDecimal;
 /**
  * @author Christoph Deppisch
  */
-public class Fruit {
+public class Price {
 
-    public Long id;
     public String name;
-    public String description;
-    public Category category;
-    public String[] tags;
-    public Status status = Status.PENDING;
-    public BigDecimal price;
+    public BigDecimal value;
 
-    public Fruit() {
+    public Price() {
     }
 
-    public Fruit(Long id, String name, String description) {
-        this.id = id;
+    public Price(String name, BigDecimal price) {
         this.name = name;
-        this.description = description;
-    }
-
-    enum Status {
-        SOLD,
-        PENDING,
-        AVAILABLE
+        this.value = price;
     }
 }

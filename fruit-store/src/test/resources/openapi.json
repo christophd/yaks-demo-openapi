@@ -55,6 +55,24 @@
         }
       }
     },
+    "/fruits/price/{id}" : {
+      "get" : {
+        "operationId" : "getPriceUpdate",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
     "/fruits/{id}" : {
       "get" : {
         "operationId" : "getFruitById",
@@ -107,6 +125,9 @@
           }
         }
       },
+      "BigDecimal" : {
+        "type" : "number"
+      },
       "Status" : {
         "enum" : [ "AVAILABLE", "PENDING", "SOLD" ],
         "type" : "string"
@@ -126,6 +147,9 @@
           },
           "name" : {
             "type" : "string"
+          },
+          "price" : {
+            "$ref" : "#/components/schemas/BigDecimal"
           },
           "status" : {
             "$ref" : "#/components/schemas/Status"

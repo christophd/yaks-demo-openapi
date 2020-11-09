@@ -32,6 +32,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 @Path("/fruits")
 @Produces(MediaType.APPLICATION_JSON)
@@ -39,6 +40,10 @@ public class FruitResource {
 
     @Inject
     FruitStore store;
+
+    @Inject
+    @RestClient
+    MarketClient marketClient;
 
     @GET
     @Operation(operationId = "listFruits")
@@ -74,10 +79,26 @@ public class FruitResource {
                 .findFirst();
 
         if (found.isPresent()) {
-            return Response.ok(found).build();
+            return Response.ok(found.get()).build();
         }
 
         return Response.status(Response.Status.NOT_FOUND).build();
+    }
+
+    @GET
+    @Path("/price/{id}")
+    @Operation(operationId = "getPriceUpdate")
+    public Response updatePrice(@PathParam("id") String id) {
+        Response response = find(id);
+
+        if (response.getEntity() != null) {
+            Fruit fruit = (Fruit) response.getEntity();
+            Price price = marketClient.getByName(fruit.name.toLowerCase());
+            fruit.price = price.value;
+            return Response.ok(fruit).build();
+        }
+
+        return response;
     }
 
     @DELETE

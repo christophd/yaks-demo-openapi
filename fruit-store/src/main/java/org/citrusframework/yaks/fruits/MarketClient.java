@@ -17,33 +17,22 @@
 
 package org.citrusframework.yaks.fruits;
 
-import java.math.BigDecimal;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+
+import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 /**
  * @author Christoph Deppisch
  */
-public class Fruit {
+@Path("/prices")
+@RegisterRestClient(configKey="market-client")
+public interface MarketClient {
 
-    public Long id;
-    public String name;
-    public String description;
-    public Category category;
-    public String[] tags;
-    public Status status = Status.PENDING;
-    public BigDecimal price;
-
-    public Fruit() {
-    }
-
-    public Fruit(Long id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
-
-    enum Status {
-        SOLD,
-        PENDING,
-        AVAILABLE
-    }
+    @GET
+    @Path("/fruits/{name}")
+    @Produces("application/json")
+    Price getByName(@PathParam("name") String name);
 }
